@@ -16,30 +16,30 @@ def start(update, context):
 def GrabItDown(update, context):
     user_text = update.message.text
     if len(user_text) <= 6:
-        reply_text = 'Invaild url.'
+        text = 'Invaild url.'
     else:
         try:
             remote_url = user_text.split(' ')[-1].split('//')[-1]
             result = requests.get(remote_url)
             if result.status_code == 200:
                 b64_bytes = base64.b64decode(result.text)
-                reply_text = str(b64_bytes, encoding='utf-8')
+                text = str(b64_bytes, 'utf-8')
             else:
-                reply_text = f"Can't retrive data from the given links\nStatus code: {result.status_code}\nRaw data: {result.text}"
+                text = f"Can't retrive data from the given links\nStatus code: {result.status_code}\nRaw data: {result.text}"
         except Exception as feedback:
-            reply_text = feedback
-    if len(reply_text) >= 4096:
+            text = feedback
+    if len(text) >= 4096:
         with open('cache.txt', 'w', encoding='utf-8') as text_file:
-            text_file.write(reply_text)
+            text_file.write(text)
         update.message.reply_text("Too long! Will be send as a txt file\n(We will delete the one on our server after sending it)")
         update.message.reply_document(open('cache.txt', 'rb'))
     else:
-        update.messages.reply_text(reply_text)
+        update.message.reply_text(text)
 
 def LoadToken():
     #Maybe will add debug function here later
     with open('config.json', 'r') as container:
-        loaded_json = json.loads(container.read)
+        loaded_json = json.loads(container.read())
         try:
             token = loaded_json['token']
         except Exception as feedback:
@@ -50,14 +50,14 @@ def LoadToken():
 def Help(update, context):
     """Show some text that might help"""
     update.message.reply_text("""/get [argument]
-    Argument: The subscription link that your proxy service provider provided to you.
-    Info: Get your vmess or other links asap
-    /ping
-    Argument: None
-    Info: Check this bot is dead or not, Pong!
-    /help
-    Arugument: None
-    Info: As you see, It show this crap you are looking right now
+Argument: The subscription link that your proxy service provider provided to you.
+Info: Get your vmess or other links asap
+/ping
+Argument: None
+Info: Check this bot is dead or not, Pong!
+/help
+Arugument: None
+Info: As you see, It show this crap you are looking right now
     """)
 
 def ping(update, context):
