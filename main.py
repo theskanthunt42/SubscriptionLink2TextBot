@@ -1,9 +1,12 @@
 """All the crap r in this file, Load messages, and stuff like that"""
-import logging
-import requests
-import base64
-import json
+import logging #Logger
+import requests #GET
+import base64 #Decode the base64 string to utf-8
+import json #For reading token from config.json
+import os #For deleting files
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+#Telegram stuff
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', 
                     level=logging.INFO)
@@ -20,19 +23,20 @@ def GrabItDown(update, context):
     else:
         try:
             remote_url = user_text.split(' ')[-1].split('//')[-1]
-            result = requests.get(remote_url)
-            if result.status_code == 200:
+            result = requests.get(f"https://{remote_url}")
+            if result.status_code == 200 and result.text != '':
                 b64_bytes = base64.b64decode(result.text)
                 text = str(b64_bytes, 'utf-8')
             else:
                 text = f"Can't retrive data from the given links\nStatus code: {result.status_code}\nRaw data: {result.text}"
         except Exception as feedback:
-            text = feedback
+            text = str(feedback)
     if len(text) >= 4096:
         with open('cache.txt', 'w', encoding='utf-8') as text_file:
             text_file.write(text)
         update.message.reply_text("Too long! Will be send as a txt file\n(We will delete the one on our server after sending it)")
         update.message.reply_document(open('cache.txt', 'rb'))
+        os.remove('cache.txt')
     else:
         update.message.reply_text(text)
 
