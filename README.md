@@ -1,4 +1,4 @@
-# SubscriptionLink2TextBot
+# Let you online bot(aka. SubscriptionLink2TextBot)
 P.S: I think this will work nice when u only have Telegram access via MTProto
 A Telegram bot for getting those vmess/trojan links from the subscription link provided by your proxy provider.
 <br>
