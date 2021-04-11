@@ -4,6 +4,7 @@ import requests #GET
 import base64 #Decode the base64 string to utf-8
 import json #For reading token from config.json
 import os #For deleting files
+import libs #Landscape for useful craps
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 #Telegram stuff
@@ -62,6 +63,9 @@ Info: Check this bot is dead or not, Pong!
 /help
 Arugument: None
 Info: As you see, It show this crap you are looking right now
+/update [argument]
+Argument: ['v2rayng', 'shadowsocks-android', 'shadowsocks-win', 'shadowsocks-qt5', 'v2ray-core-win32', 'v2ray-core-linux-amd64',  'v2ray-core-linux-arm32']
+Info: Update(Download) the software on the server that hosting this bot, Recommend running this when u first deploy it
     """)
 
 def ping(update, context):
@@ -76,6 +80,13 @@ def error(update, context):
     #Logging those errors
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
+def download_latest(update, context):
+    update.message.reply_text('Running...') #Just letting the user know this bot is working
+    response = libs.get_latest.main(command_string=update.message.text)
+    update.message.reply_text(response)
+
+def send_it(update, context):
+    user_text = update.message.text
 
 def main():
     #Do the job
@@ -84,6 +95,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('help', Help))
     updater.dispatcher.add_handler(CommandHandler('get', GrabItDown))
     updater.dispatcher.add_handler(CommandHandler('ping', ping))
+    updater.dispatcher.add_handler(CommandHandler('update', download_latest))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, echo))
     updater.dispatcher.add_error_handler(error)
     updater.start_polling()
