@@ -1,5 +1,6 @@
 "This will download the latest release of those software from github"
 import requests
+import json
 
 def main(command_string):
     command_split = command_string.split(' ')
@@ -52,9 +53,17 @@ def main(command_string):
                 else:
                     pass
                 #Download the files to Downloads
+                print(download_url)
+                print('Holds up till L56')
                 download_target = requests.get(download_url)
                 filename = download_url.split('/')[-1]
                 file_loca = f'Downloads/{filename}'
+                save_file_loca = json.load('libs/info.json')
+                print(save_file_loca)
+                save_file_loca[command_split[1]] = file_loca
+                dumped_text = json.dumps(save_file_loca)
+                with open('libs/info.json', 'w') as f:
+                    f.write(dumped_text)
                 with open(file_loca, 'wb') as f:
                     f.write(download_target.content)
                 reply_text = f'Successfully download the latest of {filename}'

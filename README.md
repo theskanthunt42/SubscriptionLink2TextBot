@@ -2,7 +2,7 @@
 I think this will work nice when u only have Telegram access via MTProto
 A Telegram bot for getting those ss/vmess/trojan links from the subscription link provided by your proxy provider. ~~(Go host it yourself)~~
 <br>
-Also letting you to get some **Softwares that NSA hate** you need
+Also letting you to get some **Softwares that NSA hate af** but u need it alot
 <br>
 Since using this bot will require you to send your links, So if u dont trust me(Or the one I host) go check the code and host yourself(recommend)
 <br>

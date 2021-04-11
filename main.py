@@ -87,6 +87,12 @@ def download_latest(update, context):
 
 def send_it(update, context):
     user_text = update.message.text
+    response, file_loca = libs.sending_file.main(user_text)
+    update.message.reply_text(response)
+    if file_loca is not '' or None:
+        update.message.reply_document(open(file_loca, 'rb'))
+    else:
+        pass
 
 def main():
     #Do the job
