@@ -22,31 +22,31 @@ def main(command_string):
             reply_text = 'Please give a correct argument\nLike: /get_softwares v2rayng'
         else:
             try:
-                if command_split[1] is argu_list[0]:
+                if command_split[1] is 'v2rayng':
                     #searching = True
                     #file_loca = file_loca_json[command_split[1]]
                     key = 'v2rayNG'
-                elif command_split[1] is argu_list[1]:
+                elif command_split[1] is 'shadowsocks-android':
                     #searching = True
                     key = 'shadowsocks--universal-'
                     #file_loca = file_loca_json[command_split[1]]
-                elif command_split[1] is argu_list[2]:
+                elif command_split[1] is 'shadowsocks-win':
                     #searching = True
                     key = 'Shadowsocks'
                     #file_loca = file_loca_json[command_split[1]]
-                elif command_split[1] is argu_list[3]:
+                elif command_split[1] is 'shadowsocks-qt5':
                     #searching = True
                     key = 'Shadowsocks-Qt5'
                     #file_loca = file_loca_json[command_split[1]]
-                elif command_split[1] is argu_list[4]:
+                elif command_split[1] is 'v2ray-core-win32':
                     #searching = False
                     #file_loca = 'Downloads/v2ray-windows-32.zip'
                     key = 'v2ray-windows-32.zip'
-                elif command_split[1] is argu_list[5]:
+                elif command_split[1] is 'v2ray-core-linux-amd64':
                     #searching = False
                     key = 'v2ray-linux-64.zip'
                     #file_loca = 'Downloads/v2ray-linux-64.zip'
-                elif command_split[1] is argu_list[6]:
+                elif command_split[1] is 'v2ray-core-linux-arm32':
                     #searching = False
                     key = 'v2ray-linux-arm32-v7a.zip'
                     #file_loca = 'Downloads/v2ray-linux-arm32-v7a.zip'

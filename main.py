@@ -66,7 +66,7 @@ Info: As you see, It show this crap you are looking right now
 /update [argument]
 Argument: ['v2rayng', 'shadowsocks-android', 'shadowsocks-win', 'shadowsocks-qt5', 'v2ray-core-win32', 'v2ray-core-linux-amd64',  'v2ray-core-linux-arm32']
 Info: Update(Download) the software on the server that hosting this bot, Recommend running this when u first deploy it
-/get [argument]
+/send [argument]
 Argument: ['v2rayng', 'shadowsocks-android', 'shadowsocks-win', 'shadowsocks-qt5', 'v2ray-core-win32', 'v2ray-core-linux-amd64',  'v2ray-core-linux-arm32']
 Info: Sending the files above.
     """)

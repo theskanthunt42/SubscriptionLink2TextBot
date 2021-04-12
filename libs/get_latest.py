@@ -54,8 +54,8 @@ def main(command_string):
                 else:
                     pass
                 # Download the files to Downloads
-                print(download_url)
-                print('Holds up till L56')
+                #print(download_url)
+                #print('Holds up till L56')
                 download_target = requests.get(download_url)
                 filename = download_url.split('/')[-1]
                 file_loca = f'Downloads/{filename}'
