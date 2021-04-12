@@ -1,3 +1,5 @@
 config.json
 cache.txt
 Downloads/
+libs/__pycache__/get_latest.cpython-38.pyc
+libs/__pycache__/sending_file.cpython-38.pyc

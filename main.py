@@ -66,6 +66,9 @@ Info: As you see, It show this crap you are looking right now
 /update [argument]
 Argument: ['v2rayng', 'shadowsocks-android', 'shadowsocks-win', 'shadowsocks-qt5', 'v2ray-core-win32', 'v2ray-core-linux-amd64',  'v2ray-core-linux-arm32']
 Info: Update(Download) the software on the server that hosting this bot, Recommend running this when u first deploy it
+/get [argument]
+Argument: ['v2rayng', 'shadowsocks-android', 'shadowsocks-win', 'shadowsocks-qt5', 'v2ray-core-win32', 'v2ray-core-linux-amd64',  'v2ray-core-linux-arm32']
+Info: Sending the files above.
     """)
 
 def ping(update, context):
@@ -89,7 +92,7 @@ def send_it(update, context):
     user_text = update.message.text
     response, file_loca = libs.sending_file.main(user_text)
     update.message.reply_text(response)
-    if file_loca is not '' or None:
+    if file_loca != '' or None:
         update.message.reply_document(open(file_loca, 'rb'))
     else:
         pass
@@ -102,6 +105,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('get', GrabItDown))
     updater.dispatcher.add_handler(CommandHandler('ping', ping))
     updater.dispatcher.add_handler(CommandHandler('update', download_latest))
+    updater.dispatcher.add_handler(CommandHandler('send', send_it))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, echo))
     updater.dispatcher.add_error_handler(error)
     updater.start_polling()
